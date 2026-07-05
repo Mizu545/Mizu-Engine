@@ -11,13 +11,13 @@
 #include "BKE_appdir.hh"
 #include "BKE_global.hh"
 
-#include "BLI_fileops.h"
+#include "BLI_fileops.hh"
 #include "BLI_path_utils.hh"
-#include "BLI_string.h"
-#include "BLI_time.h"
+#include "BLI_string.hh"
+#include "BLI_time.hh"
 #include "BLI_vector.hh"
 
-#include "BLI_system.h"
+#include "BLI_system.hh"
 #include BLI_SYSTEM_PID_H
 
 #include "GPU_capabilities.hh"
@@ -541,6 +541,9 @@ static void print_resource(std::ostream &os,
       os << "buffer _";
       os << res.storagebuf.name.str_no_array() << " { ";
       os << info.buffer_typename(res.storagebuf.type_name) << " " << res.storagebuf.name << "; };";
+      break;
+    case ShaderCreateInfo::Resource::BindType::ACCELERATION_STRUCTURE:
+      BLI_assert_unreachable();
       break;
   }
 }
